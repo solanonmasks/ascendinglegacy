@@ -1,0 +1,49 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch.
+import ServicePage from '../components/ServicePage.astro';
+import { photos } from '../site';
+---
+<ServicePage
+  title="Critical Illness and Disability Insurance Vancouver"
+  description="Critical illness and disability insurance in Vancouver, sized to your real numbers. Plain-language advice across carriers from a licensed Metro Vancouver advisor."
+  back={{ label: 'Protection', href: '/#protect' }}
+  h1="If you could not work tomorrow,"
+  h1Accent="what would still get paid?"
+  intro="Your ability to earn is usually the biggest asset you have. Disability and critical illness insurance replace income when an illness or injury stops you working, so the mortgage, the rent and the groceries are still covered while you recover."
+  ctaLabel="Get an income protection quote"
+  need="Income protection"
+  heroPhoto={photos.family}
+  colA={{
+    title: 'What it covers',
+    body: 'Disability insurance pays a monthly benefit if you cannot work because of illness or injury. Critical illness insurance pays a one-time lump sum if you are diagnosed with a covered condition such as cancer, heart attack or stroke. Many people need one before the other; we help you decide which.',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      'Your age and health',
+      'Your occupation',
+      'The size of the benefit',
+      'The waiting period before payments start',
+      'How long the benefit is paid',
+    ],
+    note: 'We size it to your real monthly costs, not a rule of thumb.',
+  }}
+  explained={{
+    title: 'Group benefits, explained.',
+    body: 'Many employer plans include some disability coverage, but it often replaces only part of your income, may be taxable, and ends when you leave the job. Bring your benefits booklet and we will show you exactly where the gaps are.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    'We talk through your income and monthly costs.',
+    'We check what your employer plan already covers.',
+    'We quote across carriers and explain the options.',
+    'We handle the application and stay with you.',
+  ]}
+  faqs={[
+    { q: 'Critical illness or disability: which do I need first?', a: 'It depends on your income, savings and existing benefits. For many working people, disability coverage comes first because it replaces income month by month. We walk through both with your numbers.' },
+    { q: 'I am self-employed. Can I still get coverage?', a: 'Yes. Self-employed people often have no group plan at all, which makes individual coverage more important. Carriers will ask about your income history.' },
+    { q: 'Will a health condition stop me getting coverage?', a: 'Not always. A condition may lead to an exclusion or a higher premium with one carrier and better terms with another. That is one reason we compare several.' },
+    { q: 'Can I change the coverage later?', a: 'Many policies allow increases or changes at certain times. We review your coverage with you as your income and family change.' },
+  ]}
+  ctaTitle="Protect your income."
+/>

@@ -1,0 +1,160 @@
+---
+// Quote request form.
+// Sending: uses Netlify Forms (works automatically when the site is hosted on
+// Netlify — submissions appear in the Netlify dashboard and can be emailed to
+// Chris). See README.md "Quote form" if hosting somewhere else.
+import { site } from '../site';
+
+interface Props {
+  defaultNeed?: string;
+  id?: string;
+}
+const { defaultNeed = 'Super Visa', id = 'quote-form' } = Astro.props;
+
+const needs = [
+  'Super Visa',
+  'Visitors to Canada',
+  'Snowbird',
+  'Trip',
+  'Income protection',
+  'Life insurance',
+  'Business',
+];
+const travelNeeds = ['Super Visa', 'Visitors to Canada', 'Snowbird', 'Trip'];
+const tracking = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'landing_page', 'form_page'];
+---
+<form
+  id={id}
+  class="form"
+  name="quote"
+  method="POST"
+  action="/thank-you/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  data-quote-form
+  data-travel-needs={travelNeeds.join('|')}
+  data-ads-conversion={site.adsConversion}
+>
+  <input type="hidden" name="form-name" value="quote" />
+  <p class="hp-field"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+  {tracking.map((name) => <input type="hidden" name={name} value="" />)}
+
+  <label class="field">
+    <span>Your name <span class="req" aria-hidden="true">*</span></span>
+    <input name="name" autocomplete="name" required />
+  </label>
+
+  <label class="field">
+    <span>Phone <span class="req" aria-hidden="true">*</span></span>
+    <input name="phone" type="tel" autocomplete="tel" required
+      pattern="[0-9+()\-.\s]{10,20}" title="Please enter a phone number with area code, e.g. 604 555 0148" />
+  </label>
+
+  <label class="field full">
+    Email
+    <input name="email" type="email" autocomplete="email" />
+  </label>
+
+  <label class="field full">
+    What do you need
+    <select name="need" data-need>
+      {needs.map((n) => <option selected={n === defaultNeed}>{n}</option>)}
+    </select>
+  </label>
+
+  <label class="field">
+    Traveller or insured person's age
+    <input name="age" inputmode="numeric" pattern="[0-9]{1,3}" title="Age in years, e.g. 67" />
+  </label>
+
+  <label class="field" data-travel-only hidden={!travelNeeds.includes(defaultNeed)}>
+    Country of origin
+    <input name="country" autocomplete="country-name" />
+  </label>
+
+  <label class="field">
+    Coverage start date
+    <input name="start_date" type="date" />
+  </label>
+
+  <label class="field">
+    Length of coverage
+    <input name="length" placeholder="e.g. 1 year" />
+  </label>
+
+  <fieldset class="segmented full">
+    <legend>Any pre-existing conditions</legend>
+    <div class="segmented__opts">
+      {['Yes', 'No', 'Not sure'].map((opt) => (
+        <label>
+          <input type="radio" name="pre_existing" value={opt} checked={opt === 'No'} />
+          <span>{opt}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <label class="field full">
+    Anything else we should know
+    <textarea name="message" rows="3"></textarea>
+  </label>
+
+  <p class="field-error full" data-form-error role="alert" hidden></p>
+
+  <div class="full">
+    <button type="submit" class="btn btn--primary">Request my quote</button>
+  </div>
+</form>
+
+<script>
+  // 1) Remember where the visitor came from (Google Ads / UTM tags) so it is sent with the form.
+  const KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
+  const params = new URLSearchParams(location.search);
+  const store = (k: string, v: string) => { try { sessionStorage.setItem('al_' + k, v); } catch {} };
+  const read = (k: string) => { try { return sessionStorage.getItem('al_' + k) || ''; } catch { return ''; } };
+  KEYS.forEach((k) => { const v = params.get(k); if (v) store(k, v); });
+  if (!read('landing_page')) store('landing_page', location.pathname);
+
+  document.querySelectorAll<HTMLFormElement>('[data-quote-form]').forEach((form) => {
+    const set = (name: string, value: string) => {
+      const input = form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+      if (input) input.value = value;
+    };
+    KEYS.forEach((k) => set(k, read(k)));
+    set('landing_page', read('landing_page'));
+    set('form_page', location.pathname);
+
+    // 2) Pre-select "What do you need" from a link like /get-a-quote/?need=Snowbird
+    const select = form.querySelector<HTMLSelectElement>('[data-need]');
+    const travelOnly = form.querySelector<HTMLElement>('[data-travel-only]');
+    const travelNeeds = (form.dataset.travelNeeds || '').split('|');
+    const wanted = params.get('need');
+    if (select && wanted && [...select.options].some((o) => o.value === wanted)) select.value = wanted;
+
+    // 3) Only show "Country of origin" for travel insurance.
+    const update = () => {
+      if (select && travelOnly) travelOnly.hidden = !travelNeeds.includes(select.value);
+    };
+    select?.addEventListener('change', update);
+    update();
+
+    // 4) Check the phone number has at least 10 digits, and record the conversion.
+    const error = form.querySelector<HTMLElement>('[data-form-error]');
+    form.addEventListener('submit', (e) => {
+      const phone = form.querySelector<HTMLInputElement>('input[name="phone"]');
+      const digits = (phone?.value || '').replace(/\D/g, '');
+      if (digits.length < 10) {
+        e.preventDefault();
+        if (error) { error.textContent = 'Please enter a phone number with area code, e.g. 604 555 0148.'; error.hidden = false; }
+        phone?.focus();
+        return;
+      }
+      const gtag = (window as any).gtag;
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { form: 'quote', need: select?.value });
+        const ads = form.dataset.adsConversion;
+        if (ads) gtag('event', 'conversion', { send_to: ads });
+      }
+    });
+  });
+</script>

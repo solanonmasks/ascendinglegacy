@@ -1,0 +1,74 @@
+---
+// DRAFT COPY — story, vision and mission to be confirmed by Chris. Julian's bio is a PLACEHOLDER.
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site, photos } from '../site';
+---
+<Base
+  title="About Chris Asuncion and Ascending Legacy"
+  description="Ascending Legacy Inc. is a Metro Vancouver insurance advisory founded by Chris Asuncion, a licensed life and health insurance advisor. It all starts with a conversation."
+>
+  <section class="navy split">
+    <div class="split__text" style="padding-left:var(--gutter);padding-right:var(--gutter);max-width:780px;margin-left:auto;">
+      <div class="eyebrow">About</div>
+      <h1>It all starts with <em>a conversation.</em></h1>
+      <p class="on-navy lead-19">Ascending Legacy is a life, health and travel insurance advisory in Metro Vancouver. We help families and business owners understand their coverage and choose what fits.</p>
+    </div>
+    <div class="photo" style={`min-height:clamp(480px,52vw,760px);background-image:url('${photos.chris}');background-position:60% 20%;`} role="img" aria-label="Chris Asuncion"></div>
+  </section>
+
+  <section class="container section grid" style="--min:420px;--gap:clamp(56px,8vw,130px);">
+    <div data-fade><SectionHead>Our story</SectionHead></div>
+    <div data-fade class="stack" style="--gap:22px;">
+      <p class="big-serif">Chris founded Ascending Legacy to give families the plain explanation he never got growing up.</p>
+      <p class="muted">Too many people hold policies they do not understand, or have no coverage at all because nobody took the time to explain it. Chris started the practice to change that: one advisor who listens first, explains clearly, and stays with you for the long run.</p>
+      <p class="muted">He works through Financial Horizons and is contracted with {site.carriers.join(', ').replace(/, ([^,]*)$/, ' and $1')}, so clients see real choices rather than a single company's products.</p>
+    </div>
+  </section>
+
+  <section class="navy">
+    <div class="container section grid" style="--min:420px;--gap:clamp(56px,8vw,130px);">
+      <div data-fade class="stack" style="--gap:22px;">
+        <span class="rule"></span>
+        <h2>Our vision</h2>
+        <p class="on-navy lead-19">Every family we work with understands what they are covered for, and why.</p>
+      </div>
+      <div data-fade class="stack" style="--gap:22px;">
+        <span class="rule"></span>
+        <h2>Our mission</h2>
+        <p class="on-navy lead-19">Advice first, products second. We recommend only what fits the budget you set, and we are there at claim time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section stack" style="--gap:clamp(48px,5vw,72px);">
+    <div data-fade><SectionHead>The team</SectionHead></div>
+    <div class="grid" style="--min:320px;--gap:clamp(40px,5vw,72px);">
+      <div data-fade class="stack" style="--gap:16px;">
+        <h3>Chris Asuncion</h3>
+        <p class="text-link" style="font-weight:500;">Founder, licensed advisor</p>
+        <p class="muted">Licensed in life and accident and sickness insurance with the Insurance Council of BC. Chris advises families and business owners across Metro Vancouver and the Fraser Valley.</p>
+        <a href={`mailto:${site.email}`} class="text-link">{site.email}</a>
+      </div>
+      <div data-fade class="stack" style="--gap:16px;">
+        <h3>Julian Asuncion</h3>
+        <p class="text-link" style="font-weight:500;">Client service</p>
+        <p class="muted">Julian helps clients with applications, policy changes and renewals, and makes sure nothing falls through the cracks.</p>
+        <a href="mailto:jasuncion@ascendinglegacy.ca" class="text-link">jasuncion@ascendinglegacy.ca</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="beige">
+    <div class="container section--md stack" style="--gap:32px;">
+      <div data-fade><SectionHead>Carriers we represent</SectionHead></div>
+      <ul data-fade class="serif-list" style="flex-direction:row;flex-wrap:wrap;gap:16px 56px;">
+        {site.carriers.map((c) => <li>{c}</li>)}
+      </ul>
+      <p class="muted-2" style="font-size:16px;">Carrier names are shown for information. Carrier logos only with each carrier's permission.</p>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>

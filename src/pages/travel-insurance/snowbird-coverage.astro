@@ -1,0 +1,62 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch,
+// especially the MSP residency rule (confirm current wording with Health Insurance BC).
+import ServicePage from '../../components/ServicePage.astro';
+import { photos } from '../../site';
+---
+<ServicePage
+  title="Snowbird Travel Insurance BC"
+  description="Snowbird travel insurance for BC residents wintering outside the province: multi-month emergency medical coverage, pre-existing conditions explained, and how long you can be away without losing MSP."
+  back={{ label: 'Travel insurance', href: '/travel-insurance/' }}
+  h1="Snowbird coverage for a winter away,"
+  h1Accent="answered honestly."
+  intro="A few months in Arizona, Palm Springs or Mexico is the reward for a long working life. A US hospital stay without the right policy can undo it. We arrange multi-month emergency medical coverage and go through the health questions with you, so the policy holds up if you need it."
+  ctaLabel="Get a snowbird quote"
+  need="Snowbird"
+  heroPhoto={photos.lake}
+  colA={{
+    title: 'What it covers',
+    body: 'Emergency hospital and physician care outside the province, prescriptions during an emergency, ambulance, and emergency return home to BC. Optional top-up plans extend an existing policy if you stay longer.',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      'Your age',
+      'Your answers to the medical questionnaire',
+      'How many days you are away',
+      'The deductible',
+      'Whether you travel inside or outside the US',
+    ],
+    note: 'We will tell you the number on the first call.',
+  }}
+  explained={{
+    title: 'The medical questionnaire, explained.',
+    body: 'Snowbird policies are priced on a health questionnaire. A wrong answer, even an honest mistake, can void a claim. We go through every question with you and your medication list before anything is submitted.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    'Tell us your dates and send your medication list.',
+    'We go through the medical questions together.',
+    'We quote across carriers and you choose.',
+    'We send the policy before you leave.',
+  ]}
+  faqs={[
+    { q: 'Can I add days if I decide to stay longer?', a: 'Usually yes, with a top-up or extension bought before your current coverage ends. Call us before the end date, not after.' },
+    { q: 'What if my medication changes before I leave?', a: 'Tell us. A change in medication can affect the stability period on a pre-existing condition, and it may change which plan is right.' },
+    { q: 'Does my employer or retiree plan already cover me?', a: 'Some do, often with a limit on trip length. Bring the benefits booklet and we will check how many days it covers.' },
+    { q: 'Can couples be on one policy?', a: 'Yes. Each person answers their own medical questions, but most carriers offer a couple or family rate.' },
+  ]}
+  ctaTitle="Get a snowbird quote."
+>
+  <section class="container section grid" style="--min:420px;--gap:clamp(56px,8vw,130px);">
+    <div data-fade class="stack">
+      <span class="rule"></span>
+      <h2>How long can you be away without losing MSP?</h2>
+    </div>
+    <div data-fade class="stack" style="--gap:22px;">
+      <p class="lead-19">To keep MSP, BC residents generally need to be physically present in the province for at least six months in a calendar year. That usually leaves up to six months a year for travel.</p>
+      <p class="muted">Longer absences may be possible in specific situations, but they need to be arranged with Health Insurance BC before you leave. Check the current rules with Health Insurance BC, and tell us your total days away so we can match the policy to them.</p>
+      <p class="muted">Remember that your travel policy and your MSP are separate. A long winter can be within the MSP limit but beyond what a policy or an employer plan covers, so we check both.</p>
+    </div>
+  </section>
+</ServicePage>

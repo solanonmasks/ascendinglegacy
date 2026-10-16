@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site';
+---
+<Base
+  title="Thank You"
+  description="Thanks for your quote request. Chris will call you within one business day."
+  noindex
+>
+  <section class="split" style="min-height:calc(100vh - var(--header-h));">
+    <div class="navy split__text" style="padding:clamp(64px,8vw,128px) clamp(24px,5vw,96px);">
+      <span class="rule"></span>
+      <h1 style="font-size:clamp(44px,5.4vw,80px);">Thanks, we have your details.</h1>
+      <p class="on-navy" style="font-size:20px;max-width:500px;">Chris will call you within one business day. Want to pick a time instead? Choose one here.</p>
+      <p class="small-print">Or call <a href={site.phoneHref} style="color:var(--gold);">{site.phone}</a></p>
+    </div>
+    <div style="padding:clamp(48px,6vw,104px) clamp(24px,5vw,96px);display:flex;align-items:center;justify-content:center;">
+      {site.calendlyUrl ? (
+        <>
+          <div class="calendly-inline-widget" data-url={site.calendlyUrl} style="min-width:280px;width:100%;height:700px;"></div>
+          <script is:inline type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </>
+      ) : (
+        <div class="placeholder-box">Booking calendar<br />(add the Calendly link in src/site.ts)</div>
+      )}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,13 @@
+---
+// Short closing row: big headline on the left, one button on the right.
+interface Props { title: string; button?: string; href?: string; need?: string }
+const { title, button = 'Start the quote request', need } = Astro.props;
+const href = Astro.props.href ?? (need ? `/get-a-quote/?need=${encodeURIComponent(need)}` : '/get-a-quote/');
+---
+<section class="container section--md row-between" style="gap:40px;">
+  <div class="stack">
+    <span class="rule"></span>
+    <h2 style="font-size:clamp(44px,5.4vw,80px);line-height:1.02;">{title}</h2>
+  </div>
+  <a href={href} class="btn btn--primary">{button}</a>
+</section>

@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { getCollection, render } from 'astro:content';
+import { site } from '../../site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('insights', ({ data }) => !data.draft);
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const date = article.data.date.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<Base title={article.data.title} description={article.data.description}>
+  <section class="navy">
+    <div class="container section--md stack" style="--gap:28px;">
+      <a href="/insights/" class="eyebrow">Insights</a>
+      <h1 style="font-size:clamp(40px,4.8vw,72px);max-width:1000px;">{article.data.title}</h1>
+      <p class="small-print">{article.data.category} · {date} · By {site.advisor}</p>
+    </div>
+  </section>
+
+  <article class="container section--md">
+    <div class="prose">
+      <Content />
+      <p class="muted" style="font-size:16px;margin-top:3em;">This article is general information, not advice for your situation. Coverage depends on the policy wording and the insurer's underwriting. {site.licence}</p>
+    </div>
+  </article>
+
+  <CtaBanner />
+</Base>

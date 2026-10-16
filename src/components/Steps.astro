@@ -1,0 +1,20 @@
+---
+// Numbered steps in gold serif numerals.
+interface Props { items: { t?: string; d: string }[]; min?: string; small?: boolean }
+const { items, min = '240px', small = false } = Astro.props;
+---
+<ol class="grid" style={`--min:${min};--gap:clamp(36px,4vw,56px);list-style:none;margin:0;padding:0;`}>
+  {items.map((s, i) => (
+    <li data-fade class="stack" style="--gap:16px;">
+      <div class:list={['numeral', { 'numeral--sm': small }]} aria-hidden="true">{i + 1}</div>
+      {s.t ? (
+        <>
+          <div class="serif" style="font-size:28px;line-height:1.15;">{s.t}</div>
+          <div class="muted">{s.d}</div>
+        </>
+      ) : (
+        <div class="serif" style="font-size:24px;line-height:1.3;">{s.d}</div>
+      )}
+    </li>
+  ))}
+</ol>

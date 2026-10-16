@@ -1,0 +1,50 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { photos } from '../../site';
+---
+<ServicePage
+  title="Super Visa Insurance Vancouver"
+  description="Super Visa insurance in Vancouver: at least $100,000 emergency medical coverage for one year, with the proof-of-coverage letter for your application. Quotes across carriers on the first call."
+  back={{ label: 'Travel insurance', href: '/travel-insurance/' }}
+  h1="Super Visa insurance, done right"
+  h1Accent="the first time."
+  intro="A Super Visa application must include proof of private medical insurance from a Canadian insurer: at least $100,000 in emergency coverage, valid for at least one year from the date of entry. We arrange it, issue the proof-of-coverage letter, and explain what the policy does and does not cover before you pay."
+  ctaLabel="Get a Super Visa quote"
+  need="Super Visa"
+  heroPhoto={photos.family}
+  colA={{
+    title: 'What it covers',
+    body: 'Emergency hospital and physician care, prescriptions during an emergency, ambulance, and emergency return home. Deductible options lower the premium.',
+    figure: '$100,000–500,000',
+    figureLabel: 'in emergency medical coverage',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      "The visitor's age",
+      'The coverage amount',
+      'The deductible',
+      'The length of coverage',
+      'Whether pre-existing conditions are covered',
+    ],
+    note: 'We will tell you the number on the first call.',
+  }}
+  explained={{
+    title: 'Pre-existing conditions, explained.',
+    body: 'Most policies require a condition to be stable for a set period before arrival. We walk through the stability clause with you so there are no surprises at claim time.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    "Send us the traveller's details.",
+    'We quote across carriers.',
+    'You choose and pay.',
+    'We send the letter for the application the same day.',
+  ]}
+  faqs={[
+    { q: 'Can I buy it after my parents arrive?', a: 'Yes, but coverage must start before IRCC approves the visa, and a waiting period may apply if bought after arrival.' },
+    { q: 'Can I cancel if the visa is refused?', a: 'Yes, most policies refund in full with proof of refusal.' },
+    { q: 'What if they leave early?', a: 'Unused days are usually refunded if no claim was made.' },
+    { q: 'Is monthly payment possible?', a: 'Yes, most carriers offer monthly instalments.' },
+  ]}
+  ctaTitle="Get a Super Visa quote."
+/>

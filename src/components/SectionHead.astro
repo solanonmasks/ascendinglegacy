@@ -1,0 +1,10 @@
+---
+// Gold rule + headline, used at the top of most sections.
+// Usage: <SectionHead>Headline text</SectionHead>
+interface Props { as?: 'h1' | 'h2'; class?: string; maxWidth?: string }
+const { as: Tag = 'h2', class: className = '', maxWidth } = Astro.props;
+---
+<div class="stack" style={maxWidth ? `max-width:${maxWidth}` : undefined}>
+  <span class="rule"></span>
+  <Tag class={className}><slot /></Tag>
+</div>

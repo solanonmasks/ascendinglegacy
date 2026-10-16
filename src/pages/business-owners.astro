@@ -1,0 +1,50 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch.
+// Tax topics: keep general; recommend clients confirm with their accountant.
+import ServicePage from '../components/ServicePage.astro';
+import { photos } from '../site';
+---
+<ServicePage
+  title="Insurance for Business Owners Vancouver"
+  description="Insurance planning for Metro Vancouver business owners: key person coverage, shareholder buy-sell funding, and corporately owned insurance, explained in plain language."
+  back={{ label: 'Business owners', href: '/#protect' }}
+  h1="Your business carries your family."
+  h1Accent="Make sure it can carry on."
+  intro="Retained earnings sitting idle, partners without a buyout plan, a key person with no backup. Each is a risk to the business and to the family behind it. We work alongside your accountant and lawyer to put the right coverage in place."
+  ctaLabel="Book a business review"
+  need="Business"
+  heroPhoto={photos.business}
+  colA={{
+    title: 'What we help with',
+    body: 'Key person insurance to protect the business if someone essential dies or falls ill. Buy-sell funding so partners can buy out a departing shareholder without draining the company. Corporately owned insurance as one way to use retained earnings for long-term and estate planning.',
+  }}
+  colB={{
+    title: 'What we look at',
+    items: [
+      'Who the business depends on',
+      'Your shareholder agreement',
+      'Retained earnings in the corporation',
+      'Your personal and estate goals',
+      'What coverage you already hold',
+    ],
+    note: 'We coordinate with your accountant on the tax side.',
+  }}
+  explained={{
+    title: 'Shareholder agreements, explained.',
+    body: 'A buy-sell clause says what happens to a partner\'s shares if they die or become disabled. Without money behind it, the surviving partners may not be able to afford the buyout. Insurance is a common way to fund it.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    'We meet to understand the business and its owners.',
+    'We review agreements and existing coverage.',
+    'We recommend options and coordinate with your advisors.',
+    'We put the coverage in place and review it yearly.',
+  ]}
+  faqs={[
+    { q: 'Should the company or me personally own the policy?', a: 'It depends on the purpose of the coverage and your tax situation. We explain the options and confirm the approach with your accountant.' },
+    { q: 'What is key person insurance?', a: 'Coverage on someone the business relies on, paid to the company, to cover lost revenue, recruiting and the time it takes to recover.' },
+    { q: 'We already have a shareholder agreement. Is that enough?', a: 'Check whether it says how a buyout would be paid for. Many agreements do not, which leaves the surviving owners to find the money.' },
+    { q: 'Do you also handle group benefits?', a: 'Ask us. We can talk through what your team has now and where individual coverage may fill the gaps.' },
+  ]}
+  ctaTitle="Book a business review."
+/>

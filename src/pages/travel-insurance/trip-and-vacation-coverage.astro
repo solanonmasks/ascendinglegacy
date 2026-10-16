@@ -1,0 +1,49 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch.
+import ServicePage from '../../components/ServicePage.astro';
+import { photos } from '../../site';
+---
+<ServicePage
+  title="Trip and Vacation Travel Insurance BC"
+  description="Trip and vacation travel insurance for BC residents: emergency medical outside Canada plus trip cancellation and interruption, explained in plain language."
+  back={{ label: 'Travel insurance', href: '/travel-insurance/' }}
+  h1="Trip and vacation coverage, without"
+  h1Accent="the fine-print surprises."
+  intro="MSP pays only a small part of medical care outside Canada. A trip policy covers emergency medical costs abroad and, if you choose, the money you have already paid for flights and hotels if you have to cancel or come home early."
+  ctaLabel="Get a trip quote"
+  need="Trip"
+  heroPhoto={photos.travel}
+  colA={{
+    title: 'What it covers',
+    body: 'Emergency medical care outside the province, ambulance and emergency return home. Optional trip cancellation and interruption for covered reasons such as illness, injury or a family emergency.',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      "Each traveller's age",
+      'How long you are away',
+      'Where you are going',
+      'The cost of the trip, if you add cancellation',
+      'Single trip or a yearly multi-trip plan',
+    ],
+    note: 'We will tell you the number on the first call.',
+  }}
+  explained={{
+    title: 'Single trip or yearly plan, explained.',
+    body: 'If you travel more than two or three times a year, a yearly multi-trip plan is often cheaper than buying each trip separately. We compare both and show you the numbers.',
+    photo: photos.lake,
+  }}
+  steps={[
+    'Tell us where, when and who is travelling.',
+    'We quote across carriers.',
+    'You choose and pay.',
+    'We send the policy before you leave.',
+  ]}
+  faqs={[
+    { q: 'Do I need travel insurance for the US?', a: 'MSP pays very little toward US hospital bills, which can be very large. Emergency medical coverage is strongly recommended for any trip outside Canada.' },
+    { q: 'Does my credit card already cover me?', a: 'Some cards include travel coverage, often with age limits, short trip lengths and conditions. Bring the card details and we will tell you where the gaps are.' },
+    { q: 'When should I buy cancellation coverage?', a: 'Soon after you book. Most plans only cover cancellation reasons that arise after the policy is bought.' },
+    { q: 'What about pre-existing conditions?', a: 'Most policies require conditions to be stable for a set period before you leave. We walk through it with you before you buy.' },
+  ]}
+  ctaTitle="Get a trip quote."
+/>

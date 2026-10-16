@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#f3eee6;-webkit-font-smoothing:antialiased}a{color:#8a6a3a}a:hover{color:#121a26}*{box-sizing:border-box}input,select,textarea,button{font:inherit}::selection{background:#b8935a;color:#0c1522}</style>
+</helmet>
+<div style="font-family:'Hanken Grotesk',sans-serif;color:#121a26;background:#f3eee6;font-size:18px;line-height:1.65;padding-bottom:{{ bottomPad }};">
+
+<header style="position:sticky;top:0;z-index:40;background:#0c1522;color:#f3eee6;">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(24px,4vw,64px);height:84px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <a href="#" onClick="{{ goHome }}" aria-label="Ascending Legacy Inc. home" style="display:flex;align-items:center;flex-shrink:0;">
+      <img src="./images/ali-lockup-light.png" alt="Ascending Legacy Inc." style="height:40px;width:auto;display:block;">
+    </a>
+    <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:30px;font-size:16px;">
+        <a href="#" onClick="{{ goTravel }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">Travel Insurance</a>
+        <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">Protection</a>
+        <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">Business Owners</a>
+        <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">How It Works</a>
+        <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">About</a>
+        <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;" style-hover="color:#b8935a">Insights</a>
+      </nav>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:26px;">
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}"><a href="tel:6045550148" style="color:#f3eee6;text-decoration:none;font-size:16px;white-space:nowrap;">604 555 0148</a></sc-if>
+      <a href="#" onClick="{{ goQuote }}" style="background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:16px;height:48px;padding:0 24px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Get a Quote</a>
+      <sc-if value="{{ showBurger }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMenu }}" style="all:unset;cursor:pointer;color:#f3eee6;font-size:16px;font-weight:500;padding:12px 0;">{{ menuLabel }}</button></sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;top:84px;left:0;right:0;bottom:0;background:#0c1522;padding:40px clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:22px;font-family:'Bodoni Moda',serif;font-size:36px;line-height:1.1;">
+      <a href="#" onClick="{{ goTravel }}" style="color:#f3eee6;text-decoration:none;">Travel Insurance</a>
+      <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;">Protection</a>
+      <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;">Business Owners</a>
+      <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;">How It Works</a>
+      <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;">About</a>
+      <a href="#" onClick="{{ goHome }}" style="color:#f3eee6;text-decoration:none;">Insights</a>
+      <a href="tel:6045550148" style="color:#b8935a;text-decoration:none;font-family:'Hanken Grotesk',sans-serif;font-size:20px;padding-top:16px;">604 555 0148</a>
+    </div>
+  </sc-if>
+</header>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <section style="position:relative;min-height:calc(94vh - 84px);background:linear-gradient(90deg,rgba(12,21,34,0.94) 0%,rgba(12,21,34,0.78) 38%,rgba(12,21,34,0.12) 78%),url('https://images.unsplash.com/photo-1609220136736-443140cffec6?w=2000&q=75&auto=format&fit=crop') 75% 30%/cover no-repeat #0c1522;color:#f3eee6;display:flex;align-items:center;">
+    <div style="max-width:1360px;width:100%;margin:0 auto;padding:clamp(72px,9vw,140px) clamp(24px,4vw,64px);">
+      <div style="max-width:760px;display:flex;flex-direction:column;gap:30px;">
+        <div style="display:flex;align-items:center;gap:16px;font-size:16px;color:#d9c39b;"><span style="width:40px;height:2px;background:#b8935a;"></span>Life, health and travel insurance advisors, Metro Vancouver</div>
+        <h1 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(46px,6.2vw,92px);line-height:1.04;letter-spacing:-0.02em;text-wrap:balance;">Coverage you understand, from someone who <span style="font-style:italic;">picks up the phone.</span></h1>
+        <p style="margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.6;color:#d6dae1;max-width:600px;text-wrap:pretty;">Ascending Legacy helps families and business owners in Metro Vancouver protect their income, their people and their travel plans. One conversation, every carrier we represent, a clear recommendation.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;padding-top:6px;">
+          <a href="#" onClick="{{ goQuote }}" style="background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;height:56px;padding:0 32px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Get a quote</a>
+          <a href="#" onClick="{{ goQuote }}" style="border:1.5px solid rgba(243,238,230,0.7);color:#f3eee6;text-decoration:none;font-weight:500;font-size:17px;height:56px;padding:0 30px;display:flex;align-items:center;white-space:nowrap;" style-hover="border-color:#b8935a;color:#d9c39b">Book a conversation</a>
+        </div>
+        <div style="font-size:16px;color:#b3bac5;">Independent advice across Manulife, Industrial Alliance and Equitable Life.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0c1522;color:#f3eee6;">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,6vw,88px) clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(40px,5vw,80px);">
+      <div data-fade="1" style="display:flex;align-items:baseline;gap:20px;"><span style="font-family:'Bodoni Moda',serif;font-size:clamp(64px,6vw,88px);line-height:0.9;color:#b8935a;">12</span><span style="font-size:18px;line-height:1.45;color:#d6dae1;">years advising<br>families in BC</span></div>
+      <div data-fade="1" style="display:flex;align-items:baseline;gap:20px;"><span style="font-family:'Bodoni Moda',serif;font-size:clamp(64px,6vw,88px);line-height:0.9;color:#b8935a;">5.0</span><span style="font-size:18px;line-height:1.45;color:#d6dae1;">average across<br>48 Google reviews</span></div>
+      <div data-fade="1" style="display:flex;flex-direction:column;justify-content:flex-end;gap:6px;"><span style="font-family:'Bodoni Moda',serif;font-size:clamp(28px,2.4vw,34px);line-height:1.15;">Licensed advisors</span><span style="font-size:18px;line-height:1.45;color:#d6dae1;">Life and accident and sickness, Insurance Council of BC</span></div>
+    </div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:clamp(48px,5vw,72px);">
+    <div data-fade="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;">
+      <div style="display:flex;flex-direction:column;gap:26px;max-width:640px;">
+        <span style="width:48px;height:2px;background:#b8935a;"></span>
+        <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;letter-spacing:-0.015em;">What do you need to protect?</h2>
+      </div>
+      <p style="margin:0;max-width:420px;color:#4a5260;">Most people come to us with one worry. Start with yours; we will look at the rest together.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,3vw,44px);">
+      <a href="#" onClick="{{ goTravel }}" data-fade="1" style="display:flex;flex-direction:column;gap:24px;color:#121a26;text-decoration:none;" style-hover="color:#8a6a3a">
+        <div style="aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.1;">Travel</div>
+        <div style="color:#4a5260;">Parents visiting, a winter down south, or a two-week trip. Coverage that meets the requirement and actually pays.</div>
+        <div style="font-weight:600;font-size:17px;color:#8a6a3a;">Travel insurance →</div>
+      </a>
+      <a href="#" onClick="{{ goHome }}" data-fade="1" style="display:flex;flex-direction:column;gap:24px;color:#121a26;text-decoration:none;margin-top:clamp(0px,5vw,80px);" style-hover="color:#8a6a3a">
+        <div style="aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1484665754804-74b091211472?w=1200&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.1;">Income and family</div>
+        <div style="color:#4a5260;">If you could not work tomorrow, what would still get paid? Critical illness, disability and life coverage sized to your real numbers.</div>
+        <div style="font-weight:600;font-size:17px;color:#8a6a3a;">Protection →</div>
+      </a>
+      <a href="#" onClick="{{ goHome }}" data-fade="1" style="display:flex;flex-direction:column;gap:24px;color:#121a26;text-decoration:none;" style-hover="color:#8a6a3a">
+        <div style="aspect-ratio:4/5;background:url('https://images.unsplash.com/photo-1577415124269-fc1140a69e91?w=1200&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.1;">Business owners</div>
+        <div style="color:#4a5260;">Retained earnings sitting idle, partners without a buyout plan, a key person with no backup. There are tax-efficient ways to fix all three.</div>
+        <div style="font-weight:600;font-size:17px;color:#8a6a3a;">Business owners →</div>
+      </a>
+    </div>
+  </section>
+
+  <section style="background:#0c1522;color:#f3eee6;">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(56px,8vw,140px);">
+      <div data-fade="1" style="display:flex;flex-direction:column;gap:28px;">
+        <span style="width:48px;height:2px;background:#b8935a;"></span>
+        <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(44px,5.2vw,76px);line-height:1.02;letter-spacing:-0.02em;">Advice first.<br><span style="font-style:italic;color:#d9c39b;">Products second.</span></h2>
+        <p style="margin:0;font-size:19px;color:#d6dae1;max-width:520px;text-wrap:pretty;">Most people have never had a straight explanation of what their coverage does. We start there. You tell us what you are worried about, we explain the options in plain language, and we only recommend what fits the budget you set. If the right answer is a smaller policy, that is what we recommend.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:48px 56px;align-content:center;">
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:18px;"><span style="width:28px;height:2px;background:#b8935a;"></span><div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.1vw,30px);line-height:1.25;">We represent several carriers, so you see real choices.</div></div>
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:18px;"><span style="width:28px;height:2px;background:#b8935a;"></span><div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.1vw,30px);line-height:1.25;">We quote on the first call.</div></div>
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:18px;"><span style="width:28px;height:2px;background:#b8935a;"></span><div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.1vw,30px);line-height:1.25;">We handle the paperwork and the claim.</div></div>
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:18px;"><span style="width:28px;height:2px;background:#b8935a;"></span><div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.1vw,30px);line-height:1.25;">You keep the same advisor, year after year.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:clamp(48px,6vw,88px);">
+    <div data-fade="1" style="display:flex;flex-direction:column;gap:26px;max-width:720px;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;letter-spacing:-0.015em;">Four steps, one advisor the whole way.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(36px,4vw,56px);">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-family:'Bodoni Moda',serif;font-size:clamp(64px,6vw,88px);line-height:0.9;color:#b8935a;">{{ s.n }}</div>
+          <div style="font-family:'Bodoni Moda',serif;font-size:28px;line-height:1.15;">{{ s.t }}</div>
+          <div style="color:#4a5260;">{{ s.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#0c1522;color:#f3eee6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));">
+    <div style="min-height:clamp(480px,52vw,760px);background:url('./images/chris.png') 60% 20%/cover no-repeat #1b2a3f;"></div>
+    <div data-fade="1" style="padding:clamp(64px,8vw,128px) clamp(24px,6vw,112px);display:flex;flex-direction:column;gap:28px;justify-content:center;max-width:720px;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;letter-spacing:-0.015em;">Meet Chris Asuncion.</h2>
+      <p style="margin:0;font-size:19px;color:#d6dae1;text-wrap:pretty;">A licensed life and health insurance advisor, Chris founded Ascending Legacy to give families the plain explanation he never got growing up. He works through Financial Horizons and is contracted with Manulife, Industrial Alliance and Equitable Life.</p>
+      <a href="#" onClick="{{ goHome }}" style="color:#d9c39b;font-weight:600;font-size:17px;text-decoration:none;" style-hover="color:#f3eee6">About Chris →</a>
+    </div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,160px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:clamp(48px,6vw,80px);">
+    <div data-fade="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;">
+      <div style="display:flex;flex-direction:column;gap:26px;">
+        <span style="width:48px;height:2px;background:#b8935a;"></span>
+        <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;letter-spacing:-0.015em;">What clients say</h2>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:14px;"><span style="font-family:'Bodoni Moda',serif;font-size:56px;line-height:1;color:#b8935a;">5.0</span><span style="color:#4a5260;">from 48 Google reviews</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,5vw,72px);">
+      <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+        <figure data-fade="1" style="margin:0;display:flex;flex-direction:column;gap:24px;">
+          <div style="font-family:'Bodoni Moda',serif;font-size:72px;line-height:0.6;height:36px;color:#b8935a;">“</div>
+          <blockquote style="margin:0;font-family:'Bodoni Moda',serif;font-size:clamp(22px,1.8vw,26px);line-height:1.4;text-wrap:pretty;">{{ r.q }}</blockquote>
+          <figcaption style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;">{{ r.who }}</span><span style="font-size:16px;color:#4a5260;">Google review, 5 stars</span></figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="position:relative;background:linear-gradient(0deg,rgba(12,21,34,0.92),rgba(12,21,34,0.72)),url('https://images.unsplash.com/photo-1559511260-66a654ae982a?w=2000&q=75&auto=format&fit=crop') center/cover no-repeat #0c1522;color:#f3eee6;">
+    <div data-fade="1" style="max-width:1360px;margin:0 auto;padding:clamp(96px,12vw,180px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:30px;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(48px,6.4vw,96px);line-height:1.02;letter-spacing:-0.02em;max-width:900px;">Let's have a <span style="font-style:italic;">conversation.</span></h2>
+      <p style="margin:0;font-size:20px;color:#d6dae1;max-width:560px;">Tell us what you are trying to protect. We will quote across our carriers and call you back the same business day.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="#" onClick="{{ goQuote }}" style="background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;height:56px;padding:0 32px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Get a quote</a>
+        <a href="tel:6045550148" style="border:1.5px solid rgba(243,238,230,0.7);color:#f3eee6;text-decoration:none;font-weight:500;font-size:17px;height:56px;padding:0 30px;display:flex;align-items:center;white-space:nowrap;" style-hover="border-color:#b8935a;color:#d9c39b">Call 604 555 0148</a>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isTravel }}" hint-placeholder-val="{{ false }}">
+  <section style="position:relative;min-height:calc(80vh - 84px);background:linear-gradient(90deg,rgba(12,21,34,0.94) 0%,rgba(12,21,34,0.72) 45%,rgba(12,21,34,0.2) 85%),url('https://images.unsplash.com/photo-1559511260-66a654ae982a?w=2000&q=75&auto=format&fit=crop') center/cover no-repeat #0c1522;color:#f3eee6;display:flex;align-items:flex-end;">
+    <div style="max-width:1360px;width:100%;margin:0 auto;padding:clamp(72px,9vw,130px) clamp(24px,4vw,64px);">
+      <div style="max-width:820px;display:flex;flex-direction:column;gap:28px;">
+        <div style="display:flex;align-items:center;gap:16px;font-size:16px;color:#d9c39b;"><span style="width:40px;height:2px;background:#b8935a;"></span>Travel insurance</div>
+        <h1 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(44px,5.8vw,86px);line-height:1.04;letter-spacing:-0.02em;text-wrap:balance;">Travel insurance that meets the requirement and <span style="font-style:italic;">pays the claim.</span></h1>
+      </div>
+    </div>
+  </section>
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(48px,7vw,120px);align-items:start;">
+    <p data-fade="1" style="margin:0;font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.3vw,32px);line-height:1.4;text-wrap:pretty;">Whether your parents are coming for the summer, you are heading south for the winter, or a family member is waiting for MSP, the coverage has to be right the first time.</p>
+    <div data-fade="1" style="display:flex;flex-direction:column;gap:28px;">
+      <p style="margin:0;color:#4a5260;">We quote across our carriers, explain the stability clauses that decide whether a claim gets paid, and send you the proof-of-coverage letter you need.</p>
+      <a href="#" onClick="{{ goQuote }}" style="align-self:flex-start;background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;height:56px;padding:0 32px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Get a travel quote</a>
+    </div>
+  </section>
+  <section style="background:#0c1522;color:#f3eee6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));">
+    <div style="min-height:clamp(420px,50vw,820px);background:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+    <div style="padding:clamp(64px,8vw,120px) clamp(24px,6vw,96px);display:flex;flex-direction:column;gap:clamp(40px,4vw,56px);justify-content:center;">
+      <a href="#" onClick="{{ goSuper }}" data-fade="1" style="display:flex;flex-direction:column;gap:12px;color:#f3eee6;text-decoration:none;" style-hover="color:#d9c39b"><div style="font-family:'Bodoni Moda',serif;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">Super Visa Insurance →</div><div style="color:#d6dae1;">The $100,000 emergency medical coverage IRCC requires, from a Canadian insurer, with the letter for your application.</div></a>
+      <a href="#" onClick="{{ goSuper }}" data-fade="1" style="display:flex;flex-direction:column;gap:12px;color:#f3eee6;text-decoration:none;" style-hover="color:#d9c39b"><div style="font-family:'Bodoni Moda',serif;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">Visitors to Canada →</div><div style="color:#d6dae1;">Emergency medical for relatives, new immigrants waiting for MSP, students and temporary workers.</div></a>
+      <a href="#" onClick="{{ goSuper }}" data-fade="1" style="display:flex;flex-direction:column;gap:12px;color:#f3eee6;text-decoration:none;" style-hover="color:#d9c39b"><div style="font-family:'Bodoni Moda',serif;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">Snowbird Coverage →</div><div style="color:#d6dae1;">Multi-month emergency medical for BC residents wintering outside the province, with pre-existing condition questions answered honestly.</div></a>
+      <a href="#" onClick="{{ goQuote }}" data-fade="1" style="display:flex;flex-direction:column;gap:12px;color:#f3eee6;text-decoration:none;" style-hover="color:#d9c39b"><div style="font-family:'Bodoni Moda',serif;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">Trip and Vacation Coverage →</div><div style="color:#d6dae1;">Emergency medical and trip cancellation for shorter trips.</div></a>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isSuper }}" hint-placeholder-val="{{ false }}">
+  <section style="background:#0c1522;color:#f3eee6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));min-height:calc(88vh - 84px);">
+    <div style="padding:clamp(64px,8vw,128px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:28px;justify-content:center;max-width:780px;margin-left:auto;">
+      <a href="#" onClick="{{ goTravel }}" style="display:flex;align-items:center;gap:16px;font-size:16px;color:#d9c39b;text-decoration:none;"><span style="width:40px;height:2px;background:#b8935a;"></span>Travel insurance</a>
+      <h1 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(44px,5.4vw,82px);line-height:1.04;letter-spacing:-0.02em;text-wrap:balance;">Super Visa insurance, done right <span style="font-style:italic;">the first time.</span></h1>
+      <p style="margin:0;font-size:19px;color:#d6dae1;text-wrap:pretty;">A Super Visa application must include proof of private medical insurance from a Canadian insurer: at least $100,000 in emergency coverage, valid for at least one year from the date of entry. We arrange it, issue the proof-of-coverage letter, and explain what the policy does and does not cover before you pay.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="#" onClick="{{ goQuote }}" style="background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;height:56px;padding:0 32px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Get a Super Visa quote</a>
+        <a href="tel:6045550148" style="border:1.5px solid rgba(243,238,230,0.7);color:#f3eee6;text-decoration:none;font-weight:500;font-size:17px;height:56px;padding:0 30px;display:flex;align-items:center;white-space:nowrap;">Call 604 555 0148</a>
+      </div>
+    </div>
+    <div style="min-height:440px;background:url('https://images.unsplash.com/photo-1484665754804-74b091211472?w=1600&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,150px) clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(56px,8vw,130px);">
+    <div data-fade="1" style="display:flex;flex-direction:column;gap:26px;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;">What it covers</h2>
+      <p style="margin:0;color:#4a5260;max-width:480px;">Emergency hospital and physician care, prescriptions during an emergency, ambulance, and emergency return home. Deductible options lower the premium.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-top:12px;"><span style="font-family:'Bodoni Moda',serif;font-size:clamp(52px,5.6vw,84px);line-height:1;color:#b8935a;">$100,000–500,000</span><span style="color:#4a5260;">in emergency medical coverage</span></div>
+    </div>
+    <div data-fade="1" style="display:flex;flex-direction:column;gap:26px;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;">What decides the price</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;font-family:'Bodoni Moda',serif;font-size:clamp(22px,2vw,28px);line-height:1.3;">
+        <div>The visitor's age</div><div>The coverage amount</div><div>The deductible</div><div>The length of coverage</div><div>Whether pre-existing conditions are covered</div>
+      </div>
+      <p style="margin:0;color:#4a5260;">We will tell you the number on the first call.</p>
+    </div>
+  </section>
+
+  <section style="background:#e9e2d6;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));">
+    <div data-fade="1" style="padding:clamp(64px,8vw,128px) clamp(24px,5vw,96px);display:flex;flex-direction:column;gap:26px;justify-content:center;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;">Pre-existing conditions, explained.</h2>
+      <p style="margin:0;color:#3d4552;max-width:520px;font-size:19px;">Most policies require a condition to be stable for a set period before arrival. We walk through the stability clause with you so there are no surprises at claim time.</p>
+    </div>
+    <div style="min-height:clamp(420px,44vw,640px);background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=75&auto=format&fit=crop') center/cover no-repeat #1b2a3f;"></div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,150px) clamp(24px,4vw,64px);display:flex;flex-direction:column;gap:clamp(48px,5vw,72px);">
+    <div data-fade="1" style="display:flex;flex-direction:column;gap:26px;"><span style="width:48px;height:2px;background:#b8935a;"></span><h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;">How it works</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(32px,4vw,56px);">
+      <sc-for list="{{ superSteps }}" as="s" hint-placeholder-count="4">
+        <div data-fade="1" style="display:flex;flex-direction:column;gap:14px;"><div style="font-family:'Bodoni Moda',serif;font-size:clamp(56px,5vw,76px);line-height:0.9;color:#b8935a;">{{ s.n }}</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;line-height:1.3;">{{ s.d }}</div></div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#0c1522;color:#f3eee6;">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(88px,11vw,150px) clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(48px,7vw,120px);">
+      <div data-fade="1" style="display:flex;flex-direction:column;gap:26px;"><span style="width:48px;height:2px;background:#b8935a;"></span><h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1.06;">Questions people ask</h2></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+          <div style="background:#131f30;">
+            <button onClick="{{ f.toggle }}" style="all:unset;cursor:pointer;width:100%;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 30px;font-family:'Bodoni Moda',serif;font-size:clamp(21px,1.8vw,25px);line-height:1.3;"><span>{{ f.q }}</span><span style="font-family:'Hanken Grotesk',sans-serif;font-size:26px;color:#b8935a;">{{ f.icon }}</span></button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 30px 28px;color:#d6dae1;max-width:640px;">{{ f.a }}</p></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(24px,4vw,64px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px;">
+    <div style="display:flex;flex-direction:column;gap:26px;"><span style="width:48px;height:2px;background:#b8935a;"></span><h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:1.02;">Get a Super Visa quote.</h2></div>
+    <a href="#" onClick="{{ goQuote }}" style="background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;height:56px;padding:0 32px;display:flex;align-items:center;white-space:nowrap;" style-hover="background:#c9a66d">Start the quote request</a>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isQuote }}" hint-placeholder-val="{{ false }}">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));min-height:calc(100vh - 84px);">
+    <div style="background:#0c1522;color:#f3eee6;padding:clamp(64px,8vw,128px) clamp(24px,5vw,96px);display:flex;flex-direction:column;gap:40px;justify-content:space-between;">
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <span style="width:48px;height:2px;background:#b8935a;"></span>
+        <h1 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(40px,4.6vw,68px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance;">Tell us who needs coverage. <span style="font-style:italic;color:#d9c39b;">We will call you back the same business day.</span></h1>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="color:#d6dae1;">Prefer to talk now?</div>
+        <a href="tel:6045550148" style="font-family:'Bodoni Moda',serif;font-size:clamp(34px,3vw,44px);line-height:1.1;color:#b8935a;text-decoration:none;">604 555 0148</a>
+        <p style="margin:12px 0 0;font-size:16px;color:#b3bac5;max-width:460px;">Chris Asuncion is licensed with the Insurance Council of BC. Premiums depend on age, health and the coverage chosen.</p>
+      </div>
+    </div>
+    <form onSubmit="{{ submitQuote }}" style="padding:clamp(48px,6vw,104px) clamp(24px,5vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:26px 24px;align-content:center;">
+      <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Your name<input required="" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Phone<input type="tel" required="" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Email<input type="email" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">What do you need
+        <select value="{{ need }}" onChange="{{ setNeed }}" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 14px;font-size:18px;color:#121a26;">
+          <option>Super Visa</option><option>Visitors to Canada</option><option>Snowbird</option><option>Trip</option><option>Income protection</option><option>Life insurance</option><option>Business</option>
+        </select>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Traveller or insured person's age<input inputMode="numeric" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <sc-if value="{{ isTravelNeed }}" hint-placeholder-val="{{ true }}">
+        <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Country of origin<input style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      </sc-if>
+      <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Coverage start date<input type="date" style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 14px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Length of coverage<input style="background:#fbf8f3;border:1.5px solid #cdc2b0;height:54px;padding:0 16px;font-size:18px;color:#121a26;outline-color:#b8935a;"></label>
+      <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-weight:500;font-size:16px;">Any pre-existing conditions</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <sc-for list="{{ condOpts }}" as="o" hint-placeholder-count="3">
+            <button type="button" onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-weight:500;font-size:16px;">Anything else we should know<textarea rows="3" style="background:#fbf8f3;border:1.5px solid #cdc2b0;padding:14px 16px;font-size:18px;color:#121a26;resize:vertical;outline-color:#b8935a;"></textarea></label>
+      <button type="submit" style="grid-column:1/-1;background:#b8935a;color:#0c1522;border:0;height:58px;font-size:17px;font-weight:600;cursor:pointer;" style-hover="background:#c9a66d">Request my quote</button>
+    </form>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isThanks }}" hint-placeholder-val="{{ false }}">
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));min-height:calc(100vh - 84px);">
+    <div style="background:#0c1522;color:#f3eee6;padding:clamp(64px,8vw,128px) clamp(24px,5vw,96px);display:flex;flex-direction:column;gap:28px;justify-content:center;">
+      <span style="width:48px;height:2px;background:#b8935a;"></span>
+      <h1 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:1.04;">Thanks, we have your details.</h1>
+      <p style="margin:0;font-size:20px;color:#d6dae1;max-width:500px;">Chris will call you within one business day. Want to pick a time instead? Choose one here.</p>
+    </div>
+    <div style="padding:clamp(48px,6vw,104px) clamp(24px,5vw,96px);display:flex;align-items:center;justify-content:center;">
+      <div style="width:100%;min-height:520px;background:#e9e2d6;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:28px;color:#3d4552;">Booking calendar</div>
+    </div>
+  </section>
+</sc-if>
+
+<footer style="background:#0c1522;color:#d6dae1;">
+  <div style="max-width:1360px;margin:0 auto;padding:clamp(72px,8vw,112px) clamp(24px,4vw,64px) 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:48px;font-size:16px;">
+    <div style="display:flex;flex-direction:column;gap:16px;grid-column:span 1;">
+      <img src="./images/ali-logo-light.png" alt="Ascending Legacy Inc." style="width:200px;height:auto;display:block;">
+      <span style="max-width:340px;">Life, health and travel insurance advisors in Metro Vancouver.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span style="color:#b8935a;font-weight:600;">Talk to Chris</span>
+      <a href="tel:6045550148" style="color:#f3eee6;text-decoration:none;font-family:'Bodoni Moda',serif;font-size:24px;">604 555 0148</a>
+      <a href="mailto:casuncion@ascendinglegacy.ca" style="color:#d6dae1;" style-hover="color:#f3eee6">casuncion@ascendinglegacy.ca</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span style="color:#b8935a;font-weight:600;">Service area</span>
+      <span>Metro Vancouver and the Fraser Valley, in person or by video.</span>
+      <span>4710 Kingsway, Suite 1200, Burnaby, BC</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <span style="color:#b8935a;font-weight:600;">Follow</span>
+      <a href="#" style="color:#d6dae1;" style-hover="color:#f3eee6">LinkedIn</a>
+      <a href="#" style="color:#d6dae1;" style-hover="color:#f3eee6">Instagram</a>
+    </div>
+  </div>
+  <div style="max-width:1360px;margin:0 auto;padding:28px clamp(24px,4vw,64px) 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:15px;color:#9aa3b0;">
+    <span>Chris Asuncion, licensed with the Insurance Council of BC. © 2027 Ascending Legacy Inc.</span>
+    <div style="display:flex;gap:24px;"><a href="#" style="color:#9aa3b0;">Privacy Policy</a><a href="#" style="color:#9aa3b0;">Terms</a></div>
+  </div>
+</footer>
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;background:#0c1522;">
+    <a href="tel:6045550148" style="display:flex;align-items:center;justify-content:center;height:60px;color:#f3eee6;text-decoration:none;font-weight:600;font-size:17px;">Call</a>
+    <a href="#" onClick="{{ goQuote }}" style="display:flex;align-items:center;justify-content:center;height:60px;background:#b8935a;color:#0c1522;text-decoration:none;font-weight:600;font-size:17px;">Get a quote</a>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;travel&quot;,&quot;super&quot;,&quot;quote&quot;,&quot;thanks&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mobileBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { page: this.props.startPage ?? 'home', w: typeof window !== 'undefined' ? window.innerWidth : 1280, need: 'Super Visa', cond: 'No', faq: 0, menu: false };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    if (typeof IntersectionObserver !== 'undefined') this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); } }), { threshold: 0.1 });
+    this.observe();
+  }
+  componentDidUpdate(prevProps, prev) {
+    if (prevProps.startPage !== this.props.startPage) this.setState({ page: this.props.startPage ?? 'home' });
+    if (prev.page !== this.state.page) { window.scrollTo(0, 0); this.observe(); }
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); this.io && this.io.disconnect(); }
+  observe() {
+    if (!this.io) return;
+    setTimeout(() => document.querySelectorAll('[data-fade]:not([data-faded])').forEach(el => {
+      el.setAttribute('data-faded', '1');
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity .9s ease, transform .9s ease';
+      this.io.observe(el);
+    }), 30);
+  }
+  go(page) { return e => { e && e.preventDefault(); this.setState({ page, menu: false }); }; }
+  renderVals() {
+    const { page, w, need, cond, faq, menu } = this.state;
+    const mobile = w < 900, bar = mobile && (this.props.mobileBar ?? true);
+    const faqs = [
+      ['Can I buy it after my parents arrive?', 'Yes, but coverage must start before IRCC approves the visa, and a waiting period may apply if bought after arrival.'],
+      ['Can I cancel if the visa is refused?', 'Yes, most policies refund in full with proof of refusal.'],
+      ['What if they leave early?', 'Unused days are usually refunded if no claim was made.'],
+      ['Is monthly payment possible?', 'Yes, most carriers offer monthly instalments.'],
+    ].map(([q, a], i) => ({ q, a, open: faq === i, icon: faq === i ? '−' : '+', toggle: () => this.setState({ faq: faq === i ? -1 : i }) }));
+    const seg = on => ({ height: 52, fontSize: 17, fontWeight: 500, cursor: 'pointer', border: on ? '1.5px solid #0c1522' : '1.5px solid #cdc2b0', background: on ? '#0c1522' : '#fbf8f3', color: on ? '#f3eee6' : '#121a26' });
+    return {
+      isHome: page === 'home', isTravel: page === 'travel', isSuper: page === 'super', isQuote: page === 'quote', isThanks: page === 'thanks',
+      showNav: w >= 1240, showBurger: w < 1240, menuOpen: menu && w < 1240, menuLabel: menu ? 'Close' : 'Menu', toggleMenu: () => this.setState({ menu: !menu }),
+      isMobile: bar, bottomPad: bar ? '60px' : '0',
+      goHome: this.go('home'), goTravel: this.go('travel'), goSuper: this.go('super'), goQuote: this.go('quote'),
+      steps: [
+        { n: '1', t: 'Conversation', d: 'A 30-minute call or coffee about your situation and what you want to protect.' },
+        { n: '2', t: 'Identify', d: 'We agree on priorities, short term and long term, and a budget you are comfortable with.' },
+        { n: '3', t: 'Review', d: 'We bring back options from the carriers we represent and walk through them with you.' },
+        { n: '4', t: 'Approval', d: 'Once you choose, we submit the application and stay with you until the policy is in force.' },
+      ],
+      reviews: [
+        { q: "Chris arranged my parents' Super Visa insurance in two days and explained exactly what it covered. The letter was accepted without a question.", who: 'Maria L., Burnaby' },
+        { q: 'We finally understand our life insurance. He showed us three options and recommended the cheaper one.', who: 'Raj and Priya S., Surrey' },
+        { q: "Had a claim on my critical illness policy last year. Chris handled every call with the insurer so I didn't have to.", who: 'Dave T., Langley' },
+      ],
+      superSteps: [
+        { n: '1', d: "Send us the traveller's details." }, { n: '2', d: 'We quote across carriers.' },
+        { n: '3', d: 'You choose and pay.' }, { n: '4', d: 'We send the letter for the application the same day.' },
+      ],
+      faqs,
+      need, setNeed: e => this.setState({ need: e.target.value }),
+      isTravelNeed: ['Super Visa', 'Visitors to Canada', 'Snowbird', 'Trip'].includes(need),
+      condOpts: ['Yes', 'No', 'Not sure'].map(label => ({ label, style: seg(cond === label), pick: () => this.setState({ cond: label }) })),
+      submitQuote: e => { e.preventDefault(); this.setState({ page: 'thanks' }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

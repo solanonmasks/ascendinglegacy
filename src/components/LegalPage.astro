@@ -1,0 +1,18 @@
+---
+// Simple text page layout for Privacy Policy and Terms.
+import Base from '../layouts/Base.astro';
+interface Props { title: string; description: string; updated: string }
+const { title, description, updated } = Astro.props;
+---
+<Base title={title} description={description}>
+  <section class="navy">
+    <div class="container section--md stack" style="--gap:24px;">
+      <span class="rule"></span>
+      <h1 style="font-size:clamp(40px,4.8vw,72px);">{title}</h1>
+      <p class="small-print">Last updated {updated}</p>
+    </div>
+  </section>
+  <section class="container section--md">
+    <div class="prose"><slot /></div>
+  </section>
+</Base>

@@ -1,0 +1,37 @@
+---
+import { site } from '../site';
+const { linkedin, instagram } = site.social;
+---
+<footer class="site-footer">
+  <div class="container grid site-footer__cols">
+    <div class="site-footer__col" style="gap:16px;">
+      <img src="/images/ali-logo-light.png" alt="Ascending Legacy Inc." width="200" height="98" style="width:200px;height:auto;" loading="lazy" />
+      <span style="max-width:340px;">{site.tagline}</span>
+    </div>
+    <div class="site-footer__col">
+      <span class="site-footer__label">Talk to Chris</span>
+      <a href={site.phoneHref} class="site-footer__phone">{site.phone}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href="/contact/">All contact details</a>
+    </div>
+    <div class="site-footer__col">
+      <span class="site-footer__label">Service area</span>
+      <span>{site.serviceArea}</span>
+      <span>{site.address.street}, {site.address.city}, {site.address.region}</span>
+    </div>
+    {(linkedin || instagram) && (
+      <div class="site-footer__col">
+        <span class="site-footer__label">Follow</span>
+        {linkedin && <a href={linkedin} rel="noopener" target="_blank">LinkedIn</a>}
+        {instagram && <a href={instagram} rel="noopener" target="_blank">Instagram</a>}
+      </div>
+    )}
+  </div>
+  <div class="container site-footer__bottom">
+    <span>{site.licence} © {site.copyrightYear} {site.name}</span>
+    <div class="site-footer__legal">
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+  </div>
+</footer>

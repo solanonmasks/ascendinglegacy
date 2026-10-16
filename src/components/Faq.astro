@@ -1,0 +1,23 @@
+---
+// Accordion of questions. One open at a time; the first is open by default.
+interface Props { items: { q: string; a: string }[]; light?: boolean }
+const { items, light = false } = Astro.props;
+---
+<div class:list={['faq', { 'faq--light': light }]} data-faq>
+  {items.map((item, i) => (
+    <details open={i === 0}>
+      <summary>{item.q}</summary>
+      <p>{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<script>
+  // When one question opens, close the others in the same list.
+  document.querySelectorAll('[data-faq]').forEach((faq) => {
+    const all = faq.querySelectorAll('details');
+    all.forEach((d) => d.addEventListener('toggle', () => {
+      if (d.open) all.forEach((other) => { if (other !== d) other.open = false; });
+    }));
+  });
+</script>

@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Steps from '../components/Steps.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site, photos } from '../site';
+
+const doors = [
+  {
+    title: 'Travel',
+    body: 'Parents visiting, a winter down south, or a two-week trip. Coverage that meets the requirement and actually pays.',
+    link: 'Travel insurance →',
+    href: '/travel-insurance/',
+    photo: photos.travel,
+  },
+  {
+    title: 'Income and family',
+    body: 'If you could not work tomorrow, what would still get paid? Critical illness, disability and life coverage sized to your real numbers.',
+    link: 'Protection →',
+    href: '/protect-your-income/',
+    photo: photos.family,
+    offset: true,
+  },
+  {
+    title: 'Business owners',
+    body: 'Retained earnings sitting idle, partners without a buyout plan, a key person with no backup. There are tax-efficient ways to fix all three.',
+    link: 'Business owners →',
+    href: '/business-owners/',
+    photo: photos.business,
+  },
+];
+
+const statements = [
+  'We represent several carriers, so you see real choices.',
+  'We quote on the first call.',
+  'We handle the paperwork and the claim.',
+  'You keep the same advisor, year after year.',
+];
+
+const steps = [
+  { t: 'Conversation', d: 'A 30-minute call or coffee about your situation and what you want to protect.' },
+  { t: 'Identify', d: 'We agree on priorities, short term and long term, and a budget you are comfortable with.' },
+  { t: 'Review', d: 'We bring back options from the carriers we represent and walk through them with you.' },
+  { t: 'Approval', d: 'Once you choose, we submit the application and stay with you until the policy is in force.' },
+];
+
+// PLACEHOLDER reviews — replace with real Google reviews (with permission) before launch.
+const reviews = [
+  { q: "Chris arranged my parents' Super Visa insurance in two days and explained exactly what it covered. The letter was accepted without a question.", who: 'Maria L., Burnaby' },
+  { q: 'We finally understand our life insurance. He showed us three options and recommended the cheaper one.', who: 'Raj and Priya S., Surrey' },
+  { q: "Had a claim on my critical illness policy last year. Chris handled every call with the insurer so I didn't have to.", who: 'Dave T., Langley' },
+];
+---
+<Base
+  title="Life, Health and Travel Insurance Advisors in Vancouver | Ascending Legacy"
+  description="Independent life, health and travel insurance advice in Metro Vancouver. Super Visa, visitors to Canada, snowbird, critical illness and life insurance. Quotes the same business day."
+>
+  <!-- Hero -->
+  <section class="hero" style={`min-height:calc(94vh - var(--header-h));align-items:center;background-image:linear-gradient(90deg,rgba(12,21,34,.94) 0%,rgba(12,21,34,.78) 38%,rgba(12,21,34,.12) 78%),url('${photos.heroFamily}');background-position:75% 30%;`}>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="eyebrow">Life, health and travel insurance advisors, Metro Vancouver</div>
+        <h1 class="h1-home">Coverage you understand, from someone who <em>picks up the phone.</em></h1>
+        <p class="lead on-navy max-600">Ascending Legacy helps families and business owners in Metro Vancouver protect their income, their people and their travel plans. One conversation, every carrier we represent, a clear recommendation.</p>
+        <div class="btn-row" style="padding-top:6px;">
+          <a href="/get-a-quote/" class="btn btn--primary">Get a quote</a>
+          <a href="/contact/" class="btn btn--secondary">Book a conversation</a>
+        </div>
+        <div class="small-print">Independent advice across {site.carriers.slice(0, -1).join(', ')} and {site.carriers.at(-1)}.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="navy">
+    <div class="container section--sm grid" style="--min:300px;--gap:clamp(40px,5vw,80px);">
+      <div data-fade style="display:flex;align-items:baseline;gap:20px;">
+        <span class="numeral">{site.yearsAdvising}</span>
+        <span class="on-navy" style="line-height:1.45;">years advising<br />families in BC</span>
+      </div>
+      <div data-fade style="display:flex;align-items:baseline;gap:20px;">
+        <span class="numeral">{site.reviewScore}</span>
+        <span class="on-navy" style="line-height:1.45;">average across<br />{site.reviewCount} Google reviews</span>
+      </div>
+      <div data-fade style="display:flex;flex-direction:column;justify-content:flex-end;gap:6px;">
+        <span class="serif" style="font-size:clamp(28px,2.4vw,34px);line-height:1.15;">Licensed advisors</span>
+        <span class="on-navy" style="line-height:1.45;">Life and accident and sickness, Insurance Council of BC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three doors -->
+  <section id="protect" class="container section stack" style="--gap:clamp(48px,5vw,72px);">
+    <div data-fade class="row-between">
+      <SectionHead maxWidth="640px">What do you need to protect?</SectionHead>
+      <p class="muted" style="max-width:420px;">Most people come to us with one worry. Start with yours; we will look at the rest together.</p>
+    </div>
+    <div class="grid" style="--min:320px;align-items:start;">
+      {doors.map((d) => (
+        <a href={d.href} data-fade class:list={['door', { 'door--offset': d.offset }]}>
+          <div class="photo door__img" style={`min-height:0;background-image:url('${d.photo}');`}></div>
+          <h3>{d.title}</h3>
+          <p class="muted">{d.body}</p>
+          <span class="text-link">{d.link}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Advice first -->
+  <section class="navy">
+    <div class="container section grid" style="--min:440px;--gap:clamp(56px,8vw,140px);">
+      <div data-fade class="stack" style="--gap:28px;">
+        <span class="rule"></span>
+        <h2 class="h2-lg">Advice first.<br /><span class="accent">Products second.</span></h2>
+        <p class="on-navy lead-19 max-520">Most people have never had a straight explanation of what their coverage does. We start there. You tell us what you are worried about, we explain the options in plain language, and we only recommend what fits the budget you set. If the right answer is a smaller policy, that is what we recommend.</p>
+      </div>
+      <div class="grid" style="--min:240px;--gap:48px 56px;align-content:center;">
+        {statements.map((s) => (
+          <div data-fade class="stack" style="--gap:18px;">
+            <span class="rule rule--sm"></span>
+            <div class="statement">{s}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="container section stack" style="--gap:clamp(48px,6vw,88px);">
+    <div data-fade><SectionHead maxWidth="720px">Four steps, one advisor the whole way.</SectionHead></div>
+    <Steps items={steps} />
+    <div data-fade><a href="/how-it-works/" class="text-link">How it works →</a></div>
+  </section>
+
+  <!-- Advisor spotlight -->
+  <section class="navy split">
+    <div class="photo" style={`min-height:clamp(480px,52vw,760px);background-image:url('${photos.chris}');background-position:60% 20%;`} role="img" aria-label="Chris Asuncion"></div>
+    <div data-fade class="split__text" style="max-width:720px;">
+      <span class="rule"></span>
+      <h2>Meet Chris Asuncion.</h2>
+      <p class="on-navy lead-19">A licensed life and health insurance advisor, Chris founded Ascending Legacy to give families the plain explanation he never got growing up. He works through Financial Horizons and is contracted with Manulife, Industrial Alliance and Equitable Life.</p>
+      <a href="/about/" class="text-link">About Chris →</a>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="container section stack" style="--gap:clamp(48px,6vw,80px);">
+    <div data-fade class="row-between">
+      <SectionHead>What clients say</SectionHead>
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span class="serif" style="font-size:56px;line-height:1;color:var(--gold);">{site.reviewScore}</span>
+        <span class="muted">from {site.reviewCount} Google reviews</span>
+      </div>
+    </div>
+    <div class="grid" style="--min:320px;--gap:clamp(40px,5vw,72px);">
+      {reviews.map((r) => (
+        <figure data-fade class="review">
+          <div class="review__mark" aria-hidden="true">“</div>
+          <blockquote>{r.q}</blockquote>
+          <figcaption><span style="font-weight:600;">{r.who}</span><span class="muted" style="font-size:16px;">Google review, 5 stars</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>

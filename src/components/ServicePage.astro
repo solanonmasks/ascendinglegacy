@@ -1,0 +1,95 @@
+---
+// Template for product pages (Super Visa, Visitors to Canada, Snowbird, Trip,
+// Protect Your Income, Protect Your Family, Business Owners).
+// Each page passes in its own text; the layout stays the same.
+//
+// Anything placed between <ServicePage> ... </ServicePage> is shown as an
+// extra section after the beige "explained" section.
+import Base from '../layouts/Base.astro';
+import Faq from './Faq.astro';
+import Steps from './Steps.astro';
+import CtaRow from './CtaRow.astro';
+import { site } from '../site';
+
+interface Props {
+  title: string;
+  description: string;
+  back: { label: string; href: string };
+  h1: string;
+  h1Accent: string;
+  intro: string;
+  ctaLabel: string;
+  need: string;
+  heroPhoto: string;
+  heroPhotoPosition?: string;
+  colA: { title: string; body: string; figure?: string; figureLabel?: string };
+  colB: { title: string; items: string[]; note?: string };
+  explained: { title: string; body: string; photo: string };
+  steps: string[];
+  faqs: { q: string; a: string }[];
+  ctaTitle: string;
+}
+const p = Astro.props;
+const quoteHref = `/get-a-quote/?need=${encodeURIComponent(p.need)}`;
+---
+<Base title={p.title} description={p.description}>
+  <section class="navy split" style="min-height:calc(88vh - var(--header-h));">
+    <div class="split__text" style="padding-left:var(--gutter);padding-right:var(--gutter);max-width:780px;margin-left:auto;">
+      <a href={p.back.href} class="eyebrow">{p.back.label}</a>
+      <h1 style="font-size:clamp(44px,5.4vw,82px);">{p.h1} <em>{p.h1Accent}</em></h1>
+      <p class="on-navy lead-19">{p.intro}</p>
+      <div class="btn-row">
+        <a href={quoteHref} class="btn btn--primary">{p.ctaLabel}</a>
+        <a href={site.phoneHref} class="btn btn--secondary">Call {site.phone}</a>
+      </div>
+    </div>
+    <div class="photo" style={`min-height:440px;background-image:url('${p.heroPhoto}');background-position:${p.heroPhotoPosition ?? 'center'};`}></div>
+  </section>
+
+  <section class="container section grid" style="--min:420px;--gap:clamp(56px,8vw,130px);">
+    <div data-fade class="stack">
+      <span class="rule"></span>
+      <h2>{p.colA.title}</h2>
+      <p class="muted max-480">{p.colA.body}</p>
+      {p.colA.figure && (
+        <div class="stack" style="--gap:6px;padding-top:12px;">
+          <span class="serif" style="font-size:clamp(52px,5.6vw,84px);line-height:1;color:var(--gold);">{p.colA.figure}</span>
+          <span class="muted">{p.colA.figureLabel}</span>
+        </div>
+      )}
+    </div>
+    <div data-fade class="stack">
+      <span class="rule"></span>
+      <h2>{p.colB.title}</h2>
+      <ul class="serif-list">
+        {p.colB.items.map((item) => <li>{item}</li>)}
+      </ul>
+      {p.colB.note && <p class="muted">{p.colB.note}</p>}
+    </div>
+  </section>
+
+  <section class="beige split">
+    <div data-fade class="split__text" style="padding-left:clamp(24px,5vw,96px);padding-right:clamp(24px,5vw,96px);gap:26px;">
+      <span class="rule"></span>
+      <h2>{p.explained.title}</h2>
+      <p class="muted-2 max-520 lead-19">{p.explained.body}</p>
+    </div>
+    <div class="photo" style={`background-image:url('${p.explained.photo}');`}></div>
+  </section>
+
+  <slot />
+
+  <section class="container section stack" style="--gap:clamp(48px,5vw,72px);">
+    <div data-fade class="stack"><span class="rule"></span><h2>How it works</h2></div>
+    <Steps items={p.steps.map((d) => ({ d }))} min="220px" small />
+  </section>
+
+  <section class="navy">
+    <div class="container section grid" style="--min:380px;--gap:clamp(48px,7vw,120px);">
+      <div data-fade class="stack"><span class="rule"></span><h2>Questions people ask</h2></div>
+      <Faq items={p.faqs} />
+    </div>
+  </section>
+
+  <CtaRow title={p.ctaTitle} href={quoteHref} />
+</Base>

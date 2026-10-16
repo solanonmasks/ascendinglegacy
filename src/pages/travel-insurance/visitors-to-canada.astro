@@ -1,0 +1,51 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch.
+import ServicePage from '../../components/ServicePage.astro';
+import { photos } from '../../site';
+---
+<ServicePage
+  title="Visitors to Canada Insurance Vancouver"
+  description="Visitors to Canada insurance from a Metro Vancouver advisor: emergency medical for visiting relatives, new immigrants waiting for MSP, students and temporary workers."
+  back={{ label: 'Travel insurance', href: '/travel-insurance/' }}
+  h1="Visitors to Canada insurance, for the people"
+  h1Accent="you are hosting."
+  intro="A hospital visit in BC can cost thousands of dollars a day for someone who is not covered by MSP. Visitors to Canada insurance pays for emergency medical care while a relative is visiting, while a new resident waits for provincial coverage, or while a student or worker is between plans."
+  ctaLabel="Get a visitor quote"
+  need="Visitors to Canada"
+  heroPhoto={photos.travel}
+  colA={{
+    title: 'Who it is for',
+    body: 'Parents and relatives visiting from abroad, new permanent residents in the MSP waiting period, international students, temporary foreign workers, and returning Canadians who have lost provincial coverage.',
+    figure: '$10,000–500,000',
+    figureLabel: 'in emergency medical coverage, depending on the plan',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      "The visitor's age",
+      'The coverage amount',
+      'The deductible',
+      'How many days you need',
+      'Whether pre-existing conditions are covered',
+    ],
+    note: 'We will tell you the number on the first call.',
+  }}
+  explained={{
+    title: 'Pre-existing conditions, explained.',
+    body: 'Most plans only cover a condition that has been stable for a set period before the policy starts. We read the stability clause with you, line by line, so you know what would and would not be paid before you buy.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    "Send us the visitor's details and dates.",
+    'We quote across carriers.',
+    'You choose and pay.',
+    'We send the policy and wallet card the same day.',
+  ]}
+  faqs={[
+    { q: 'Can I buy it after my visitor has arrived?', a: 'Usually yes, but most plans then apply a waiting period before illness is covered. Buying before arrival avoids it.' },
+    { q: 'Does it cover a new immigrant waiting for MSP?', a: 'Yes. Many people buy a plan to cover the MSP waiting period. We size it to the date provincial coverage starts.' },
+    { q: 'What if they go home early?', a: 'Unused days are usually refunded if no claim was made. The exact rule depends on the carrier.' },
+    { q: 'Is this the same as Super Visa insurance?', a: 'Similar coverage, but a Super Visa has specific requirements for the amount, the length and the insurer. If your visitor is applying for a Super Visa, see our Super Visa page.' },
+  ]}
+  ctaTitle="Get a visitor quote."
+/>

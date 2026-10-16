@@ -1,0 +1,23 @@
+---
+// DRAFT — a starting point only. Have this reviewed before launch.
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../site';
+---
+<LegalPage title="Terms" description="Terms of use for the Ascending Legacy Inc. website." updated="October 2026">
+  <p>By using this website you agree to these terms.</p>
+
+  <h2>General information only</h2>
+  <p>The content on this website is general information about insurance. It is not advice for your personal situation and does not create an advisor–client relationship. Coverage, eligibility and premiums depend on each insurer's policy wording and underwriting. No coverage is in force until an insurer approves an application and the policy is issued.</p>
+
+  <h2>Licensing</h2>
+  <p>{site.licence} Insurance products are provided by the insurers we represent.</p>
+
+  <h2>Quotes</h2>
+  <p>Any quote or estimate depends on the information provided and is subject to the insurer's approval. We do not guarantee approval or the payment of any claim.</p>
+
+  <h2>Links</h2>
+  <p>We are not responsible for the content of other websites we link to.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+</LegalPage>

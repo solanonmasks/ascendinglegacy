@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site';
+const addressLine = `${site.address.street}, ${site.address.city}, ${site.address.region}`;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(addressLine)}&output=embed`;
+---
+<Base
+  title="Contact"
+  description="Contact Ascending Legacy: call Chris Asuncion, send an email, or visit our office in Burnaby. Serving Metro Vancouver and the Fraser Valley in person or by video."
+>
+  <section class="split">
+    <div class="navy split__text" style="padding:clamp(64px,8vw,128px) clamp(24px,5vw,96px);gap:40px;">
+      <div class="stack" style="--gap:28px;">
+        <div class="eyebrow">Contact</div>
+        <h1 class="h1-sm">Talk to a person, <span class="accent">not a call centre.</span></h1>
+      </div>
+      <div class="stack" style="--gap:28px;">
+        <div class="stack" style="--gap:6px;">
+          <span style="color:var(--gold);font-weight:600;font-size:16px;">Chris Asuncion, licensed advisor</span>
+          <a href={site.phoneHref} class="serif" style="font-size:clamp(30px,2.6vw,40px);line-height:1.1;color:var(--paper);text-decoration:none;">{site.phone}</a>
+          <a href={`mailto:${site.email}`} style="color:var(--on-navy);">{site.email}</a>
+        </div>
+        <div class="stack" style="--gap:6px;">
+          <span style="color:var(--gold);font-weight:600;font-size:16px;">Julian Asuncion, client service</span>
+          <a href="mailto:jasuncion@ascendinglegacy.ca" style="color:var(--on-navy);">jasuncion@ascendinglegacy.ca</a>
+        </div>
+        <div class="stack" style="--gap:6px;">
+          <span style="color:var(--gold);font-weight:600;font-size:16px;">Office</span>
+          <span class="on-navy">{addressLine}</span>
+          <span class="on-navy">{site.serviceArea}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:clamp(48px,6vw,104px) clamp(24px,5vw,96px);display:flex;flex-direction:column;gap:28px;justify-content:center;">
+      <h2 style="font-size:clamp(32px,3vw,44px);">Send a short message</h2>
+      <form class="form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hp-field"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+        <label class="field">Your name <input name="name" autocomplete="name" required /></label>
+        <label class="field">Phone <input name="phone" type="tel" autocomplete="tel" required pattern="[0-9+()\-.\s]{10,20}" title="Please enter a phone number with area code" /></label>
+        <label class="field full">Email <input name="email" type="email" autocomplete="email" /></label>
+        <label class="field full">How can we help? <textarea name="message" rows="4"></textarea></label>
+        <div class="full"><button type="submit" class="btn btn--primary">Send message</button></div>
+      </form>
+      <p class="muted" style="font-size:16px;">{site.licence}</p>
+    </div>
+  </section>
+
+  <section>
+    <iframe
+      title={`Map of ${addressLine}`}
+      src={mapSrc}
+      style="border:0;width:100%;height:clamp(320px,40vw,480px);display:block;filter:grayscale(0.6);"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+</Base>

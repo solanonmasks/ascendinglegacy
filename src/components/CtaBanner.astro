@@ -1,0 +1,17 @@
+---
+// Full-width photo banner with "Let's have a conversation" and two buttons.
+import { site, photos } from '../site';
+interface Props { photo?: string }
+const { photo = photos.vancouver } = Astro.props;
+---
+<section class="hero" style={`background-image:linear-gradient(0deg,rgba(12,21,34,.92),rgba(12,21,34,.72)),url('${photo}');background-position:center;`}>
+  <div class="container" data-fade style="padding-top:clamp(96px,12vw,180px);padding-bottom:clamp(96px,12vw,180px);display:flex;flex-direction:column;gap:30px;width:100%;">
+    <span class="rule"></span>
+    <h2 class="h2-xl" style="max-width:900px;"><slot name="title">Let's have a <em>conversation.</em></slot></h2>
+    <p class="on-navy" style="font-size:20px;max-width:560px;"><slot>Tell us what you are trying to protect. We will quote across our carriers and call you back the same business day.</slot></p>
+    <div class="btn-row">
+      <a href="/get-a-quote/" class="btn btn--primary">Get a quote</a>
+      <a href={site.phoneHref} class="btn btn--secondary">Call {site.phone}</a>
+    </div>
+  </div>
+</section>

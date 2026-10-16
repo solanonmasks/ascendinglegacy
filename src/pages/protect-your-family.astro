@@ -1,0 +1,49 @@
+---
+// DRAFT COPY — written from the design patterns. Chris to review before launch.
+import ServicePage from '../components/ServicePage.astro';
+import { photos } from '../site';
+---
+<ServicePage
+  title="Life Insurance Vancouver"
+  description="Life insurance in Vancouver explained in plain language: term or permanent, how much you need, and quotes across carriers from a licensed Metro Vancouver advisor."
+  back={{ label: 'Protection', href: '/#protect' }}
+  h1="Life insurance sized to your family,"
+  h1Accent="not to a sales target."
+  intro="Life insurance gives the people who depend on you money to stay in the home, pay off debts and keep the plan you made together. We work out how much you actually need and show you options across our carriers, including the smaller policy if that is the right answer."
+  ctaLabel="Get a life insurance quote"
+  need="Life insurance"
+  heroPhoto={photos.heroFamily}
+  colA={{
+    title: 'What it covers',
+    body: 'A tax-free lump sum paid to the people you choose if you die while the policy is in force. Term insurance covers a set period, such as until the mortgage is paid or the children are grown. Permanent insurance lasts your whole life and can also build cash value.',
+  }}
+  colB={{
+    title: 'What decides the price',
+    items: [
+      'Your age and health',
+      'Whether you smoke',
+      'The amount of coverage',
+      'Term or permanent',
+      'How long a term you choose',
+    ],
+    note: 'We will tell you the number on the first call.',
+  }}
+  explained={{
+    title: 'How much you need, explained.',
+    body: 'We add up the mortgage and debts, the income your family would need and for how long, and future costs such as education, then subtract what you already have. The result is a number you can see the reasoning behind.',
+    photo: photos.paperwork,
+  }}
+  steps={[
+    'We talk about who depends on you.',
+    'We work out how much coverage you need.',
+    'We quote across carriers and explain the options.',
+    'We handle the application and stay with you.',
+  ]}
+  faqs={[
+    { q: 'Is the life insurance through my work enough?', a: 'Group life is often one or two times your salary and usually ends when you leave the job. For most families with a mortgage or young children it is a starting point, not the whole answer.' },
+    { q: 'Term or permanent?', a: 'Term is usually the lowest cost way to cover a period of high need. Permanent makes sense for some estate and business goals. We show you both and explain the trade-offs.' },
+    { q: 'Do I need a medical exam?', a: 'Not always. Depending on your age and the amount, some carriers only ask health questions. We will tell you what to expect before you apply.' },
+    { q: 'What happens at claim time?', a: 'We help your family with the claim paperwork and stay in contact with the insurer, so they are not dealing with it alone.' },
+  ]}
+  ctaTitle="Protect your family."
+/>

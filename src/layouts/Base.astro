@@ -1,0 +1,122 @@
+---
+// The frame every page sits in: <head> tags, header, footer and mobile call bar.
+import '@fontsource-variable/bodoni-moda/opsz.css';
+import '@fontsource-variable/bodoni-moda/opsz-italic.css';
+import '@fontsource-variable/hanken-grotesk/index.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../site';
+
+interface Props {
+  title: string;        // shown in the browser tab and Google results
+  description: string;  // Google results snippet
+  hideMobileBar?: boolean;
+  noindex?: boolean;
+}
+const { title, description, hideMobileBar = false, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title.includes('Ascending Legacy') ? title : `${title} | Ascending Legacy`;
+
+// Business details for Google (LocalBusiness / InsuranceAgency schema).
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'InsuranceAgency',
+  name: site.name,
+  url: Astro.site?.toString(),
+  logo: new URL('/images/ali-logo-original-black.png', Astro.site).toString(),
+  image: new URL('/images/chris.png', Astro.site).toString(),
+  telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode || undefined,
+    addressCountry: site.address.country,
+  },
+  areaServed: ['Metro Vancouver', 'Fraser Valley', 'British Columbia'],
+  sameAs: Object.values(site.social).filter(Boolean),
+};
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#0c1522" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/images/ali-logo-original-black.png', Astro.site)} />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    {site.ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>
+        <script is:inline define:vars={{ ga4Id: site.ga4Id, adsId: site.adsConversion.split('/')[0] }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+          if (adsId) gtag('config', adsId);
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    {!hideMobileBar && (
+      <div class="mobile-bar">
+        <a href={site.phoneHref}>Call</a>
+        <a href="/get-a-quote/" class="mobile-bar__quote">Get a quote</a>
+      </div>
+    )}
+
+    <script define:vars={{ adsConversion: site.adsConversion }}>
+      // Track tap-to-call clicks (only does anything if Google tracking is switched on in src/site.ts).
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest && e.target.closest('a[href^="tel:"]');
+        if (!link || typeof window.gtag !== 'function') return;
+        window.gtag('event', 'phone_click', { link_url: link.href, page_path: location.pathname });
+        if (adsConversion) window.gtag('event', 'conversion', { send_to: adsConversion });
+      });
+    </script>
+
+    <script>
+      // Scroll reveal: elements with data-fade that start below the fold fade up once.
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.remove('fade-pending');
+            entry.target.classList.add('fade-in');
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-fade]').forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight) return;
+          el.classList.add('fade-pending');
+          io.observe(el);
+        });
+      }
+    </script>
+  </body>
+</html>

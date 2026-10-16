@@ -1,0 +1,58 @@
+---
+// DRAFT COPY — expands the home page 4-step block. Chris to review before launch.
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const steps = [
+  { t: 'Conversation', d: 'A 30-minute call, video meeting or coffee. You tell us what you are worried about and what you want to protect. There is no cost and no obligation, and we will not ask you to sign anything.' },
+  { t: 'Identify', d: 'Together we agree on priorities, short term and long term, and set a monthly budget you are comfortable with. If something can wait, we say so.' },
+  { t: 'Review', d: 'We bring back options from the carriers we represent and walk through them with you in plain language: what each one covers, what it does not, and what it costs. Then we give you a clear recommendation.' },
+  { t: 'Approval', d: 'Once you choose, we complete the application with you and handle the back and forth with the insurer. We stay with you until the policy is in force, and we are the person you call at renewal or claim time.' },
+];
+const bring = [
+  'Any current insurance policies',
+  'Your employer benefits booklet',
+  'A rough monthly budget',
+];
+---
+<Base
+  title="How It Works"
+  description="How working with Ascending Legacy works: one conversation, clear priorities, options across carriers, and one advisor from application to claim."
+>
+  <section class="navy">
+    <div class="container section stack" style="--gap:28px;">
+      <div class="eyebrow">How it works</div>
+      <h1 style="max-width:980px;">Four steps, <em>one advisor the whole way.</em></h1>
+      <p class="on-navy lead max-600">No pressure and no jargon. Here is exactly what happens after you get in touch.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(56px,6vw,96px);">
+      {steps.map((s, i) => (
+        <li data-fade class="grid" style="--min:280px;--gap:clamp(24px,4vw,64px);align-items:start;">
+          <div style="display:flex;align-items:baseline;gap:24px;">
+            <span class="numeral">{i + 1}</span>
+            <h2 class="h2">{s.t}</h2>
+          </div>
+          <p class="lead-19 muted" style="max-width:640px;">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="beige">
+    <div class="container section grid" style="--min:380px;--gap:clamp(48px,7vw,120px);">
+      <div data-fade><SectionHead>What to bring to the first conversation.</SectionHead></div>
+      <div data-fade class="stack" style="--gap:22px;">
+        <ul class="serif-list">
+          {bring.map((b) => <li>{b}</li>)}
+        </ul>
+        <p class="muted-2">Do not worry if you do not have them all. We can start without them.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</Base>
